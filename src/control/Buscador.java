@@ -1,4 +1,6 @@
-package model;
+package control;
+
+import view.Menu;
 
 import java.io.IOException;
 import java.net.URI;
@@ -9,15 +11,22 @@ import java.net.http.HttpResponse;
 public class Buscador {
 
     private String cep;
-    private String chave = "viacep.com.br/ws/"+ cep +"/json/";
+    private String endereco;
+    Menu menu = new Menu();
 
-    public void BuscarCEP() throws IOException, InterruptedException {
+    public void buscarCEP() throws IOException, InterruptedException {
+
+        cep = menu.interacaoUsuario();
+        endereco = "https://viacep.com.br/ws/"+ cep +"/json/";
+
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(chave))
+                .uri(URI.create(endereco))
                 .build();
 
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.body());
     }
 }
