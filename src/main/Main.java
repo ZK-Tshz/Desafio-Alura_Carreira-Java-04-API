@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         Buscador buscador = new Buscador();
-        Menu menu = new Menu();
         Scanner leitor = new Scanner(System.in);
         String saida = "";
 
