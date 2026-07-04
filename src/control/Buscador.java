@@ -11,17 +11,15 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 
 public class Buscador {
 
     private String cep;
     private String chave;
-    Endereco endereco;
+    private Endereco endereco;
     Menu menu = new Menu();
 
-
-    public void buscarCEP() throws IOException, InterruptedException {
+    public Endereco buscarCEP() throws IOException, InterruptedException {
 
         cep = menu.coletorCEP();
         chave = "https://viacep.com.br/ws/" + cep + "/json/";
@@ -40,7 +38,7 @@ public class Buscador {
         Gson gson = new GsonBuilder()
                 .create();
 
-        endereco = gson.fromJson(json, Endereco.class);
+        return endereco = gson.fromJson(json, Endereco.class);
     }
 }
 
