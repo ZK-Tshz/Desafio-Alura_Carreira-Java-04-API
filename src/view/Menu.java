@@ -1,12 +1,16 @@
 package view;
 
+import control.Buscador;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
 
     private String cep;
+    private String saida = "";
 
-    public String interacaoUsuario() {
+    public String coletorCEP() {
         Scanner leitor = new Scanner(System.in);
 
         System.out.println("Digite o CEP que deseja buscar: ");
@@ -14,3 +18,4 @@ public class Menu {
         return cep;
     }
 }
+

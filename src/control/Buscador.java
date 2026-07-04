@@ -12,12 +12,13 @@ public class Buscador {
 
     private String cep;
     private String endereco;
+    private String entrada;
     Menu menu = new Menu();
 
     public void buscarCEP() throws IOException, InterruptedException {
 
-        cep = menu.interacaoUsuario();
-        endereco = "https://viacep.com.br/ws/"+ cep +"/json/";
+        cep = menu.coletorCEP();
+        endereco = "https://viacep.com.br/ws/" + cep + "/json/";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -30,3 +31,4 @@ public class Buscador {
         System.out.println(response.body());
     }
 }
+
