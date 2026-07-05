@@ -1,10 +1,8 @@
 package control;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Endereco;
-import view.Menu;
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,14 +12,11 @@ import java.net.http.HttpResponse;
 
 public class Buscador {
 
-    private String cep;
-    private String chave;
-    private Endereco endereco;
-    Menu menu = new Menu();
+    public Endereco buscarCEP(String cep) throws IOException, InterruptedException {
 
-    public Endereco buscarCEP() throws IOException, InterruptedException {
+        String chave;
+        Endereco endereco;
 
-        cep = menu.coletorCEP();
         chave = "https://viacep.com.br/ws/" + cep + "/json/";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -38,7 +33,8 @@ public class Buscador {
         Gson gson = new GsonBuilder()
                 .create();
 
-        return endereco = gson.fromJson(json, Endereco.class);
+        endereco = gson.fromJson(json, Endereco.class);
+        return endereco;
     }
 }
 

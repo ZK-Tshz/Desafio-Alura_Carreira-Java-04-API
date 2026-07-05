@@ -3,7 +3,6 @@ package main;
 import control.Buscador;
 import control.HistoricoEnderecos;
 import model.Endereco;
-import view.Menu;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -13,11 +12,14 @@ public class Main {
 
         Buscador buscador = new Buscador();
         HistoricoEnderecos historico = new HistoricoEnderecos();
+        Scanner leitor = new Scanner(System.in);
 
-        Endereco endereco = buscador.buscarCEP();
+        System.out.println("Digite o CEP que deseja buscar: ");
+        String cep = leitor.nextLine();
+
+        Endereco endereco = buscador.buscarCEP(cep);
         historico.guardarHistorico(endereco);
 
-        Scanner leitor = new Scanner(System.in);
         String saida = "";
 
         while (!saida.equalsIgnoreCase("sair")) {
@@ -25,8 +27,13 @@ public class Main {
             saida = leitor.nextLine();
 
             if (saida.equalsIgnoreCase("sim")) {
-                endereco = buscador.buscarCEP();
+
+                System.out.println("Digite o CEP que deseja buscar: ");
+                cep = leitor.nextLine();
+
+                endereco = buscador.buscarCEP(cep);
                 historico.guardarHistorico(endereco);
+
             } else {
                 break;
             }

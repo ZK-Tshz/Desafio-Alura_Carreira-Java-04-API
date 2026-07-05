@@ -11,15 +11,15 @@ import java.util.List;
 
 public class HistoricoEnderecos {
 
-    List<Endereco> historico = new ArrayList<>();
-
-    Gson gson = new GsonBuilder()
-            .setPrettyPrinting()
-            .create();
+    private final List<Endereco> historico = new ArrayList<>();
 
     public void guardarHistorico(Endereco endereco) {
         historico.add(endereco);
     }
+
+    Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .create();
 
     public void guardarJSON() throws IOException {
         FileWriter escrita = new FileWriter("enderecos.json");
